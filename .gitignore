@@ -1,0 +1,28 @@
+# dependências
+node_modules/
+
+# ambiente
+.env
+.env.*
+
+# build
+dist/
+build/
+
+# prisma client gerado
+generated/prisma/
+
+# logs
+*.log
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Pasta e Arquivos de D
+crases.ts
+dicas/

@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id String @id @default(uuid())
+  name String @unique
+  password String
+  role String @default("user")
+  motors Motor[]
+}
+
+model Motor {
+  id String @id @default(uuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  name String 
+  power Int
+  createdAt DateTime @default(now())
+
+}
