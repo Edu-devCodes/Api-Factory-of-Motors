@@ -3,10 +3,11 @@ import { UserResponse } from "../../models/User.js";
 import { ICreateUserService } from "../../services/create-user/protocols.js";
 import { HttpRequest, HttpResponse } from "../protocols.js";
 import { ICreateUserController } from "./protocols.js";
+import { Prisma } from "../../../generated/prisma/client.js";
 
 export class CreateUserController implements ICreateUserController {
 
-    constructor (private createService: ICreateUserService) {}
+    constructor(private createService: ICreateUserService) { }
 
     async handle(httpRequest: HttpRequest<User>): Promise<HttpResponse<UserResponse>> {
         try {
@@ -14,7 +15,7 @@ export class CreateUserController implements ICreateUserController {
             const requireFields = ["name", "password"];
 
             for (const field of requireFields) {
-                if(!params?.[field as keyof User]) {
+                if (!params?.[field as keyof User]) {
                     return {
                         statusCode: 400,
                         body: `Field ${field} is required`
@@ -22,6 +23,14 @@ export class CreateUserController implements ICreateUserController {
                 }
             }
 
+            if (params!.password.length < 6) {
+                return {
+                    statusCode: 400,
+                    body: "Password must contain at least 6 characters"
+                }
+            }
+
+            
             const response = await this.createService.handle(params!);
 
             return {
@@ -33,7 +42,18 @@ export class CreateUserController implements ICreateUserController {
             }
 
 
-        } catch {
+        } catch (error) {
+            if (
+                error instanceof Prisma.PrismaClientKnownRequestError &&
+                error.code === "P2002"
+            ) {
+                return {
+                    statusCode: 400,
+                    body: "Name already exists"
+                }
+            }
+
+
             return {
                 statusCode: 500,
                 body: "Something went wrong"

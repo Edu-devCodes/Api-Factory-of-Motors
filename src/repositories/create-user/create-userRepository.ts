@@ -6,14 +6,16 @@ export class PostgreeCreateUserRepository implements ICreateUserRepository {
     async createUser(newParams: CreatedUserDTO): Promise<UserResponse> {
 
         const { name, hashedPassword } = newParams;
+        const nameTrim = name.replace(/\s+/g, '').toLowerCase();
 
         const user = await prisma.user.create({
             data: {
-                name,
+                name: nameTrim,
                 password: hashedPassword
             }
         })
 
+  
         return {
             name: user.name
         }
