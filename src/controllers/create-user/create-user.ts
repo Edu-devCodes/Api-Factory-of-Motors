@@ -23,6 +23,17 @@ export class CreateUserController implements ICreateUserController {
                 }
             }
 
+            const name = params!.name;
+
+            const isValidName = /^[a-z0-9._-]+$/.test(name);
+
+            if (!isValidName) {
+                return {
+                    statusCode: 400,
+                    body: "Name must contain only lowercase letters and no spaces"
+                }
+            }
+
             if (params!.password.length < 6) {
                 return {
                     statusCode: 400,
@@ -30,7 +41,7 @@ export class CreateUserController implements ICreateUserController {
                 }
             }
 
-            
+
             const response = await this.createService.handle(params!);
 
             return {
