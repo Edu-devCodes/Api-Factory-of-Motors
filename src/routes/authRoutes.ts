@@ -24,6 +24,7 @@ router.post("/register", async (req, res) => {
     })
 });
 
+
 router.post("/login", async (req, res) => {
     const authUserRepository = new PostgreeAuthRepository();
     const compareProvider = new BcryptHashProvider();
@@ -38,7 +39,6 @@ router.post("/login", async (req, res) => {
         body
     })
 });
-
 
 
 export default router;
