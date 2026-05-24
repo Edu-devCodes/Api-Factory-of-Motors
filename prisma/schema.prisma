@@ -7,20 +7,77 @@ datasource db {
   provider = "postgresql"
 }
 
+// ENUMS
+enum PartType {
+  PISTON
+  CRANKSHAFT
+  TURBO
+  RADIATOR
+  CAMSHAFT
+  ECU
+  OIL_SYSTEM
+}
+
+
+enum Rarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+
 model User {
   id String @id @default(uuid())
   name String @unique
   password String
   role String @default("user")
-  motors Motor[]
+  engines Engine[]
 }
 
-model Motor {
+model Engine {
   id String @id @default(uuid())
+
   userId String
   user User @relation(fields: [userId], references: [id])
-  name String 
-  power Int
+  name String
+
+  parts EnginePart[]
+
   createdAt DateTime @default(now())
 
+}
+
+
+model EnginePart {
+  id String @id @default(uuid())
+
+  engineId String
+  partId String
+  part Part @relation(fields: [partId], references: [id])
+  engine Engine @relation(fields: [engineId], references: [id])
+}
+
+
+
+model Part {
+  id String @id @default(uuid())
+
+  name String
+  type PartType
+
+  rarity Rarity
+
+  rpm Int
+  torque Int
+  heat Int
+  cooling Int
+  stability Int
+  durability Int
+
+  weight Float
+  heatRes Int
+
+   engineParts EnginePart[]
+  createdAt DateTime @default(now())
 }
