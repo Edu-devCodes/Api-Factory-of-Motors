@@ -1,6 +1,6 @@
-import { EnginesDTO } from "../../dto/EngineDTO.js";
-import { IlistEngineService } from "../../services/engine-service/list-engine/protocolsService.js";
-import { HttpResponse } from "../protocols.js";
+import { EnginesDTO } from "../../../dto/EngineDTO.js";
+import { IlistEngineService } from "../../../services/engine-service/list-engine/protocolsService.js";
+import { HttpResponse } from "../../protocols.js";
 import { IlistEnginesController } from "./protocolsController.js";
 
 export class ListEngineController implements IlistEnginesController {
