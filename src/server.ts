@@ -1,7 +1,8 @@
 import express from "express";
 import { config } from "dotenv";
-import authRoutes from "./routes/authRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
 import enginesRoutes from "./routes/engineRoutes.js";
+import partRoutes from "./routes/partRoutes.js";
 config();
 
 const PORT = process.env.PORT || 3000;
@@ -12,5 +13,6 @@ app.use(express.json());
 
 app.use("/auth", authRoutes)
 app.use("/", enginesRoutes);
+app.use("/", partRoutes);
 
 app.listen(PORT, () => console.log(`Listen on port ${PORT}!`))

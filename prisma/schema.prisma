@@ -63,7 +63,7 @@ model EnginePart {
 model Part {
   id String @id @default(uuid())
 
-  name String
+  name String @unique
   type PartType
 
   rarity Rarity
