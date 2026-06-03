@@ -3,11 +3,12 @@ import { AuthMiddware } from "../middlewares/authMiddware.js";
 import { CreatePartRepository } from "../repositories/parts-repository/create-parts/createPartRepository.js";
 import { CreatePartService } from "../services/parts-service/create-parts/createPartsService.js";
 import { CreatePartController } from "../controllers/part-controller/create-part/createPartController.js";
+import { authAdminMiddleware } from "../middlewares/authAdminMiddleware.js";
 
 const router = express.Router();
 
 // Criar partes do motor, dps adicionar para só admin criar, um adminMidware?
-router.post("/parts", AuthMiddware, async (req, res) => {
+router.post("/parts", AuthMiddware, authAdminMiddleware, async (req, res) => {
     const createPartRepository = new CreatePartRepository();
     const createPartService = new CreatePartService(createPartRepository);
     const createPartController = new CreatePartController(createPartService);
@@ -17,6 +18,5 @@ router.post("/parts", AuthMiddware, async (req, res) => {
 
     res.status(statusCode).send(body);
 });
-
 
 export default router;
