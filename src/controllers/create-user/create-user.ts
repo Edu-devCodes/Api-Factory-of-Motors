@@ -59,7 +59,7 @@ export class CreateUserController implements ICreateUserController {
                 error.code === "P2002"
             ) {
                 return {
-                    statusCode: 400,
+                    statusCode: 409,
                     body: "Name already exists"
                 }
             }
