@@ -1,7 +1,7 @@
 // Responsabilidade: Apenas Montar o documento OpenApi, basicamente junta tudo!!!
-import userSchema from "./schemas/auth/user.schema.js";
-import userResponseSchema from "./schemas/auth/user.response.js";
-import userMessageSchema from "./schemas/auth/user.message.js";
+import userSchema from "./schemas/auth/register/user.schema.js";
+import userResponseSchema from "./schemas/auth/register/user.response.js";
+import userMessageSchema from "./schemas/auth/register/user.message.js";
 import authPaths from "./paths/auth.path.js";
 
 const swaggerDocument = {
@@ -9,7 +9,7 @@ const swaggerDocument = {
     info: {
         title: "Roguelike Engine API",
         version: "1.0.0",
-        description: "API for managing, building, constructing, and simulating engines."
+        description: "RESTful API built with Node.js, TypeScript, PostgreSQL, and Prisma for engine simulation and management."
     },
 
     servers: [
