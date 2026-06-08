@@ -7,7 +7,7 @@ const userSchema = {
             minLength: 6,
             pattern: "^[a-z0-9._-]+$",
             description:
-                "Username must contain at least 6 characters and may only include lowercase letters, numbers, dots (.), underscores (_) and hyphens (-).",
+                 "Unique username. Must contain at least 6 characters and may only include lowercase letters, numbers, dots (.), underscores (_) and hyphens (-).",
             example: "eduardo_123"
         },
         password: {

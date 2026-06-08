@@ -1,9 +1,8 @@
 // Responsabilidade: Documentar endpoint de autenticaçáo.
-import userSchema from "../schemas/user.schema.js"
-
 const authPaths = {
     "/auth/register": {
         post: {
+            tags: ["Auth"],
             summary: "Register a new user.",
             requestBody: {
                 required: true,
@@ -17,7 +16,7 @@ const authPaths = {
             },
             responses: {
                 400: {
-                    description: 
+                    description:
                         "Validation error."
                 },
                 409: {
@@ -25,17 +24,24 @@ const authPaths = {
                         "Name already exists"
                 },
                 500: {
-                    description: 
+                    description:
                         "Internal server error"
                 },
                 201: {
                     description:
                         "User created successfully",
-                        body: {
-                            "name": "username"
+
+                    content: {
+                        "application/json": {
+                            schema: {
+                                $ref: "#/components/schemas/CreateUserResponse",
+                            }
                         }
+                    }
                 }
             }
         },
     }
 }
+
+export default authPaths;
