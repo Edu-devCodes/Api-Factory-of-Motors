@@ -7,6 +7,7 @@ import userLoggedMessageSchema from "./schemas/auth/login/userLoggedResponse..js
 import userLoggedResponseSchema from "./schemas/auth/login/user.token.js";
 import authPaths from "./paths/auth/auth.path.register.js";
 import authLoginPath from "./paths/auth/auth.path.login.js";
+import bearerAuth from "./components/securitySchemes/bearerAuth.js";
 
 
 const swaggerDocument = {
@@ -45,6 +46,9 @@ const swaggerDocument = {
             UserLoggedResponse: userLoggedResponseSchema
 
 
+        },
+        securitySchemes: {
+            AuthMiddware: bearerAuth
         }
     },
 
