@@ -2,7 +2,12 @@
 import userSchema from "./schemas/auth/register/user.schema.js";
 import userResponseSchema from "./schemas/auth/register/user.response.js";
 import userMessageSchema from "./schemas/auth/register/user.message.js";
-import authPaths from "./paths/auth.path.js";
+import userLoginSchema from "./schemas/auth/login/user.schema.js";
+import userLoggedMessageSchema from "./schemas/auth/login/userLoggedResponse..js";
+import userLoggedResponseSchema from "./schemas/auth/login/user.token.js";
+import authPaths from "./paths/auth/auth.path.register.js";
+import authLoginPath from "./paths/auth/auth.path.login.js";
+
 
 const swaggerDocument = {
     openapi: "3.1.1",
@@ -34,12 +39,18 @@ const swaggerDocument = {
         schemas: {
             User: userSchema,
             UserResponse: userResponseSchema,
-            CreateUserResponse: userMessageSchema
+            CreateUserResponse: userMessageSchema,
+            UserInputLogged: userLoginSchema,
+            UserLoggedMessage: userLoggedMessageSchema,
+            UserLoggedResponse: userLoggedResponseSchema
+
+
         }
     },
 
     paths: {
-        ...authPaths
+        ...authPaths,
+        ...authLoginPath
     }
 
 }

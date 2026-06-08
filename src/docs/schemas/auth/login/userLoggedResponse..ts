@@ -1,13 +1,13 @@
-const userMessageSchema = {
+const userLoggedMessageSchema = {
     type: "object",
 
     properties: {
         message: {
             type: "string",
-            example: "User created successfully"
+            example: "User logged in successfully."
         },
         body: {
-            $ref: "#/components/schemas/UserResponse"
+            $ref: "#/components/schemas/UserLoggedResponse"
         },
     },
     required: [
@@ -16,4 +16,4 @@ const userMessageSchema = {
     ]
 }
 
-export default userMessageSchema;
+export default userLoggedMessageSchema;

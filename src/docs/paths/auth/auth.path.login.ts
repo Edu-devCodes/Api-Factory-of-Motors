@@ -1,15 +1,15 @@
 // Responsabilidade: Documentar endpoint de autenticaçáo.
-const authPaths = {
-    "/auth/register": {
+const authLoginPath = {
+    "/auth/login": {
         post: {
             tags: ["Auth"],
-            summary: "Register a new user.",
+            summary: "Log in with your username and password..",
             requestBody: {
                 required: true,
                 content: {
                     "application/json": {
                         schema: {
-                            $ref: "#/components/schemas/User"
+                            $ref: "#/components/schemas/UserInputLogged"
                         }
                     }
                 }
@@ -19,22 +19,22 @@ const authPaths = {
                     description:
                         "Validation error."
                 },
-                409: {
+                401: {
                     description:
-                        "Name already exists"
+                        "Invalid credentials."
                 },
                 500: {
                     description:
-                        "Internal server error"
+                        "Internal server error."
                 },
-                201: {
+                200: {
                     description:
-                        "User created successfully",
+                        "User logged in successfully",
 
                     content: {
                         "application/json": {
                             schema: {
-                                $ref: "#/components/schemas/CreateUserResponse",
+                                $ref: "#/components/schemas/UserLoggedMessage",
                             }
                         }
                     }
@@ -44,4 +44,4 @@ const authPaths = {
     }
 }
 
-export default authPaths;
+export default authLoginPath;
