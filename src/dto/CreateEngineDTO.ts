@@ -4,5 +4,8 @@ export interface CreateEngineInput {
 }
 
 export interface EngineDTO {
+    id: string;
+    userId: string
     name: string;
+    createdAt: Date;
 }

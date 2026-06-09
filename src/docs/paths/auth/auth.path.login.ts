@@ -21,7 +21,7 @@ const authLoginPath = {
                 },
                 401: {
                     description:
-                        "Invalid credentials."
+                        "Invalid credentials." 
                 },
                 500: {
                     description:

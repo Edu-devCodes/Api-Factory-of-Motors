@@ -8,6 +8,10 @@ import userLoggedResponseSchema from "./schemas/auth/login/user.token.js";
 import authPaths from "./paths/auth/auth.path.register.js";
 import authLoginPath from "./paths/auth/auth.path.login.js";
 import bearerAuth from "./components/securitySchemes/bearerAuth.js";
+import engineSchema from "./schemas/engines/create-engine/engine.schema.js";
+import engineCreatePath from "./paths/engines/engineCreate.path.js";
+import engineResponseSchema from "./schemas/engines/create-engine/engineResponse.schema.js";
+
 
 
 const swaggerDocument = {
@@ -43,18 +47,21 @@ const swaggerDocument = {
             CreateUserResponse: userMessageSchema,
             UserInputLogged: userLoginSchema,
             UserLoggedMessage: userLoggedMessageSchema,
-            UserLoggedResponse: userLoggedResponseSchema
+            UserLoggedResponse: userLoggedResponseSchema,
+            EngineInput: engineSchema,
+            EngineResponse: engineResponseSchema
 
 
         },
         securitySchemes: {
-            AuthMiddware: bearerAuth
+            bearerAuth: bearerAuth
         }
     },
 
     paths: {
         ...authPaths,
-        ...authLoginPath
+        ...authLoginPath,
+        ...engineCreatePath
     }
 
 }
