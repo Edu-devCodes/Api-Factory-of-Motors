@@ -11,8 +11,11 @@ import bearerAuth from "./components/securitySchemes/bearerAuth.js";
 import engineSchema from "./schemas/engines/create-engine/engine.schema.js";
 import engineCreatePath from "./paths/engines/engineCreate.path.js";
 import engineResponseSchema from "./schemas/engines/create-engine/engineResponse.schema.js";
-
-
+import enginePartSchema from "./schemas/engines/list-engines/enginePart.schema.js";
+import partSchema from "./schemas/engines/list-engines/part.schema.js";
+import engineListPath from "./paths/engines/engineList.path.js";
+import listengineResponseSchema from "./schemas/engines/list-engines/ListEngineResponse.js";
+import listEngineResponse from "./schemas/engines/engineResponse.js";
 
 const swaggerDocument = {
     openapi: "3.1.1",
@@ -49,8 +52,11 @@ const swaggerDocument = {
             UserLoggedMessage: userLoggedMessageSchema,
             UserLoggedResponse: userLoggedResponseSchema,
             EngineInput: engineSchema,
-            EngineResponse: engineResponseSchema
-
+            EngineResponse: engineResponseSchema,
+            ListEngineResponseSchema: listengineResponseSchema,
+            ListEngineResponse: listEngineResponse,
+            EnginePart: enginePartSchema,
+            Part: partSchema
 
         },
         securitySchemes: {
@@ -61,7 +67,10 @@ const swaggerDocument = {
     paths: {
         ...authPaths,
         ...authLoginPath,
-        ...engineCreatePath
+        "/engines": {
+            ...engineCreatePath["/engines"],
+            ...engineListPath["/engines"]
+        }
     }
 
 }
