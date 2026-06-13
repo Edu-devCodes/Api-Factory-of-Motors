@@ -17,7 +17,7 @@ export async function  authAdminMiddleware(
 
 
     if(user?.role !== "admin") {
-        return res.status(403).json({error: "Restricted  access"});
+        return res.status(403).json({error: "Access denied. Administrator privileges required"});
     }
 
     next();

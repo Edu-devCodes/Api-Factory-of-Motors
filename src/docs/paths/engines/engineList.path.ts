@@ -16,6 +16,9 @@ const engineListPath = {
                     description:
                         "Server internal error"
                 },
+                401: {
+                    description: "Authentication failed. Token not provided or token invalid."
+                },
                 200: {
                     content: {
                         "application/json": {

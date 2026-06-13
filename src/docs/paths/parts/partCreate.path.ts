@@ -1,8 +1,8 @@
 const partCreatePath = {
-    "/engines": {
+    "/parts": {
         post: {
-            tags: ["Engines"],
-            summary: "Create an engine",
+            tags: ["Parts"],
+            summary: "Create an engine part",
 
             security: [
                 {
@@ -15,7 +15,7 @@ const partCreatePath = {
                 content: {
                     "application/json": {
                         schema: {
-                            $ref: "#/components/schemas/EngineInput"
+                            $ref: "#/components/schemas/PartCreateInput"
                         }
                     }
                 }
@@ -23,26 +23,34 @@ const partCreatePath = {
             responses: {
                 400: {
                     description:
-                        "Missing field name"
+                        "Missing fields"
                 },
-                500: {
+                409: {
                     description:
-                        "Internal server error"
+                        "A part with this name already exist"
+                },
+                201: {
+                    content: {
+                        "application/json": {
+                            schema: {
+                                $ref: "#/components/schemas/PartCreatedResponse"
+                            }
+                        }
+                    }
+
+                },
+                403: {
+                    description:
+                        "Access denied. Administrator privileges required"
                 },
                 401: {
                     description: "Authentication failed. Token not provided or token invalid."
                 },
-                201: {
+                500: {
                     description:
-                        "Engine created successfully",
-                    content: {
-                        "application/json": {
-                            schema: {
-                                $ref: "#/components/schemas/EngineResponse"
-                            }
-                        }
-                    }
+                        "Internal server error"
                 }
+
             }
         }
     }

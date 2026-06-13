@@ -7,7 +7,7 @@ import { authAdminMiddleware } from "../middlewares/authAdminMiddleware.js";
 
 const router = express.Router();
 
-// Criar partes do motor, dps adicionar para só admin criar, um adminMidware?
+
 router.post("/parts", AuthMiddware, authAdminMiddleware, async (req, res) => {
     const createPartRepository = new CreatePartRepository();
     const createPartService = new CreatePartService(createPartRepository);

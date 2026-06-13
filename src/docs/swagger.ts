@@ -16,6 +16,9 @@ import partSchema from "./schemas/engines/list-engines/part.schema.js";
 import engineListPath from "./paths/engines/engineList.path.js";
 import listengineResponseSchema from "./schemas/engines/list-engines/ListEngineResponse.js";
 import listEngineResponse from "./schemas/engines/engineResponse.js";
+import createPartInputSchema from "./schemas/parts/create-part/createPartInput.shema.js";
+import createPartResponseSchema from "./schemas/parts/create-part/createPartResponse.shema.js"
+import partCreatePath from "./paths/parts/partCreate.path.js";
 
 const swaggerDocument = {
     openapi: "3.1.1",
@@ -56,7 +59,9 @@ const swaggerDocument = {
             ListEngineResponseSchema: listengineResponseSchema,
             ListEngineResponse: listEngineResponse,
             EnginePart: enginePartSchema,
-            Part: partSchema
+            Part: partSchema,
+            PartCreateInput: createPartInputSchema,
+            PartCreatedResponse: createPartResponseSchema
 
         },
         securitySchemes: {
@@ -70,6 +75,9 @@ const swaggerDocument = {
         "/engines": {
             ...engineCreatePath["/engines"],
             ...engineListPath["/engines"]
+        },
+        "/parts": {
+            ...partCreatePath["/parts"]
         }
     }
 
