@@ -13,7 +13,9 @@ router.get("/engines", AuthMiddware, async (req, res) => {
     const listEnginesRepository = new ListEnginesRepository()
     const listEnginesService = new ListEnginesService(listEnginesRepository);
     const listEnginesController = new ListEngineController(listEnginesService);
-    const {statusCode, body} = await listEnginesController.handle();
+    const {statusCode, body} = await listEnginesController.handle({
+        userId: req.userId
+    });
 
     res.status(statusCode).send(body);
 });

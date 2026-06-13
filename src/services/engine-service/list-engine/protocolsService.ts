@@ -1,9 +1,10 @@
 import { EnginesDTO } from "../../../dto/EngineDTO.js";
+import { EngineListInput } from "../../../dto/EngineDTO.js";
 
 export interface IlistEngineService {
-    handle(): Promise<EnginesDTO[]>;
+    handle(listEngineInput: EngineListInput): Promise<EnginesDTO[]>;
 }
 
 export interface IlistEngineRepository {
-    listEngines(): Promise<EnginesDTO[]>;
+    listEngines(listEngineInput: EngineListInput): Promise<EnginesDTO[]>;
 }
