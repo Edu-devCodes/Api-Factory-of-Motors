@@ -4,10 +4,10 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,8 @@
     "jsonwebtoken": "^9.0.3",
     "prisma": "^7.8.0",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
