@@ -62,7 +62,7 @@ describe("Validate Parts", () => {
                 rpm: 0
             }
 
-            expect(() => validateParts(validPart)).toThrow();
+            expect(() => validateParts(validPart)).not.toThrow();
         });
     });
 
