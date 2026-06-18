@@ -18,7 +18,6 @@ enum PartType {
   OIL_SYSTEM
 }
 
-
 enum Rarity {
   COMMON
   RARE
@@ -26,58 +25,72 @@ enum Rarity {
   LEGENDARY
 }
 
-
 model User {
-  id String @id @default(uuid())
-  name String @unique
+  id       String   @id @default(uuid())
+  name     String   @unique
   password String
-  role String @default("user")
-  engines Engine[]
+  role     String   @default("user")
+  engines  Engine[]
+
+  inventory UserPart[]
 }
 
 model Engine {
   id String @id @default(uuid())
 
   userId String
-  user User @relation(fields: [userId], references: [id])
-  name String
+  user   User   @relation(fields: [userId], references: [id])
+  name   String
 
   parts EnginePart[]
 
   createdAt DateTime @default(now())
-
 }
-
 
 model EnginePart {
   id String @id @default(uuid())
 
   engineId String
-  partId String
-  part Part @relation(fields: [partId], references: [id])
-  engine Engine @relation(fields: [engineId], references: [id])
+  partId   String
+  part     Part   @relation(fields: [partId], references: [id])
+  engine   Engine @relation(fields: [engineId], references: [id])
 }
-
-
 
 model Part {
   id String @id @default(uuid())
 
-  name String @unique
+  name String   @unique
   type PartType
 
   rarity Rarity
 
-  rpm Int
-  torque Int
-  heat Int
-  cooling Int
-  stability Int
+  rpm        Int
+  torque     Int
+  heat       Int
+  cooling    Int
+  stability  Int
   durability Int
 
-  weight Float
+  weight  Float
   heatRes Int
 
-   engineParts EnginePart[]
+  engineParts EnginePart[]
+  userParts   UserPart[]
+  createdAt   DateTime     @default(now())
+}
+
+model UserPart {
+  id String @id @default(uuid())
+
+  userId String
+  partId String
+
+  quantity Int @default(1)
+
+  user User @relation(fields: [userId], references: [id])
+  part Part @relation(fields: [partId], references: [id])
+
   createdAt DateTime @default(now())
+
+  @@unique([userId, partId])
 }
