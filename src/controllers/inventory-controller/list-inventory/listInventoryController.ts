@@ -2,7 +2,7 @@ import { ListInventoryDTO } from "../../../dto/inventory/list/ListinventoryDTO.j
 import { ListInventoryInput } from "../../../dto/inventory/list/ListinventoryInput.js";
 import { IListInventoryService } from "../../../services/inventory-services/inventoryServiceProtocols.js";
 import { HttpRequest, HttpResponse } from "../../protocols.js";
-import { IListInventoryController } from "../inventoryControllerProtocols.js";
+import { IListInventoryController } from "./inventoryControllerProtocols.js";
 
 export class ListInventoryController implements IListInventoryController {
     constructor(private listInventoryService: IListInventoryService) { }

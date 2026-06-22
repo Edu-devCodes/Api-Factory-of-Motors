@@ -19,6 +19,10 @@ import listEngineResponse from "./schemas/engines/engineResponse.js";
 import createPartInputSchema from "./schemas/parts/create-part/createPartInput.shema.js";
 import createPartResponseSchema from "./schemas/parts/create-part/createPartResponse.shema.js"
 import partCreatePath from "./paths/parts/partCreate.path.js";
+import inventoryPartSchema from "./schemas/inventory/list-inventory/inventoryPart.schema.js";
+import listInventoryPartResponseSchema from "./schemas/inventory/list-inventory/listInventoryPartResponse.schema.js";
+import inventoryPartPath from "./paths/inventory/inventoryPart.path.js";
+
 
 const swaggerDocument = {
     openapi: "3.1.1",
@@ -35,15 +39,22 @@ const swaggerDocument = {
     ],
 
     tags: [
-        { name: "Auth",
-                description: "Authentication endpoints"
-         },
-        { name: "Engines",
+        {
+            name: "Auth",
+            description: "Authentication endpoints"
+        },
+        {
+            name: "Engines",
             description: "Engines endpoints"
-         },
-        { name: "Parts",
+        },
+        {
+            name: "Parts",
             description: "Parts endpoints"
-         }
+        },
+        {
+            name: "Inventory",
+            description: "Inventory endpoints"
+        }
     ],
 
     components: {
@@ -61,7 +72,9 @@ const swaggerDocument = {
             EnginePart: enginePartSchema,
             Part: partSchema,
             PartCreateInput: createPartInputSchema,
-            PartCreatedResponse: createPartResponseSchema
+            PartCreatedResponse: createPartResponseSchema,
+            InventoryPart: inventoryPartSchema,
+            InventoryPartResponse: listInventoryPartResponseSchema
 
         },
         securitySchemes: {
@@ -78,6 +91,9 @@ const swaggerDocument = {
         },
         "/parts": {
             ...partCreatePath["/parts"]
+        },
+        "/inventory": {
+            ...inventoryPartPath["/inventory"]
         }
     }
 
